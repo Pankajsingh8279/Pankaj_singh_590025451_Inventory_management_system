@@ -10,7 +10,6 @@ struct Product {
     float price;
 };
 
-// Utility safe input functions
 int inputInt(char msg[]) {
     char buffer[100];
     int value;
@@ -45,11 +44,11 @@ void inputString(char msg[], char *str) {
     char buffer[100];
     printf("%s", msg);
     fgets(buffer, sizeof(buffer), stdin);
-    buffer[strcspn(buffer, "\n")] = '\0';  // remove newline
+    buffer[strcspn(buffer, "\n")] = '\0';  
     strcpy(str, buffer);
 }
 
-// Function Prototypes
+
 void addProduct(struct Product p[], int *n);
 void displayProducts(struct Product p[], int n);
 void searchProduct(struct Product p[], int n);
@@ -88,7 +87,6 @@ int main() {
     return 0;
 }
 
-// Add Product
 void addProduct(struct Product p[], int *n) {
     p[*n].id = inputInt("Enter Product ID: ");
     inputString("Enter Product Name: ", p[*n].name);
@@ -99,7 +97,6 @@ void addProduct(struct Product p[], int *n) {
     printf("Product Added Successfully!\n");
 }
 
-// Display Products
 void displayProducts(struct Product p[], int n) {
     if (n == 0) {
         printf("No products in inventory!\n");
@@ -113,7 +110,6 @@ void displayProducts(struct Product p[], int n) {
     }
 }
 
-// Search Product
 void searchProduct(struct Product p[], int n) {
     int id = inputInt("Enter Product ID to search: ");
     int found = 0;
@@ -132,7 +128,6 @@ void searchProduct(struct Product p[], int n) {
         printf("Product Not Found!\n");
 }
 
-// Update Product
 void updateProduct(struct Product p[], int n) {
     int id = inputInt("Enter Product ID to update: ");
     int found = 0;
@@ -151,7 +146,6 @@ void updateProduct(struct Product p[], int n) {
         printf("Product Not Found!\n");
 }
 
-// Delete Product
 void deleteProduct(struct Product p[], int *n) {
     int id = inputInt("Enter Product ID to delete: ");
     int found = 0;
@@ -173,7 +167,6 @@ void deleteProduct(struct Product p[], int *n) {
         printf("Product Not Found!\n");
 }
 
-// Save Data to File
 void saveToFile(struct Product p[], int n) {
     FILE *fp = fopen("inventory.txt", "w");
     for (int i = 0; i < n; i++) {
@@ -183,7 +176,6 @@ void saveToFile(struct Product p[], int n) {
     fclose(fp);
 }
 
-// Load Data from File
 int loadFromFile(struct Product p[]) {
     FILE *fp = fopen("inventory.txt", "r");
     if (!fp) return 0;
